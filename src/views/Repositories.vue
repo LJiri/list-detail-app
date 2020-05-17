@@ -1,8 +1,13 @@
 <template>
   <div class="container">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <UserInfo v-bind="userInfo" />
-    <RepositoryList v-bind:repositories="repositories" />
+    <div class="row">
+      <div class="col-12 col-lg-4">
+        <UserInfo v-bind="userInfo" />
+      </div>
+      <div class="col-12 col-lg-8">
+        <RepositoryList v-bind:repositories="repositories" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -19,8 +24,6 @@ export default {
   },
   data() {
     return {
-      data: 'fuck',
-      url: 'http://satyr.io/200-250x300',
       userInfo: {
         avatar_url: 'http://satyr.io/200-250x300'
       },
@@ -36,11 +39,6 @@ export default {
       let repositoriesResponse = await fetch("https://api.github.com/users/Inza/repos");
       let repositoriesData = await repositoriesResponse.json();
       this.repositories = Array.from(repositoriesData);
-
-
-      console.log('ahoj', repositoriesData)
-
-
     })();
   }
 };

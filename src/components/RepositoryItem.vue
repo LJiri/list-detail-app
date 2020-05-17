@@ -6,7 +6,7 @@
             <div>
                 <span v-if="language"><SvgIcon v-bind:name="'language'" />{{ language }}</span>
                 <span v-if="stargazers_count"><SvgIcon v-bind:name="'star'" />{{ stargazers_count }}</span>
-                <span v-if="forks"><SvgIcon v-bind:name="'fork'" />{{ forks }}</span>
+                <span v-if="license"><SvgIcon v-bind:name="'license'" />{{ license.name }}</span>
             </div>
         </router-link>
     </li>
@@ -27,7 +27,7 @@ export default {
     description: String,
     language: String,
     stargazers_count: Number,
-    forks: Number
+    license: Object
   }
 };
 </script>
@@ -36,10 +36,6 @@ export default {
     .repository-item {
         .icon {
             width: 20px;
-
-            &-fork {
-                width: 14px;
-            }   
         }
     }
 </style>

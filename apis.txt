@@ -17,8 +17,14 @@ stargazers_count
 forks
 
 
-https://api.github.com/repos/Inza/agens/branches{/branch}
-https://api.github.com/repos/Inza/ror-plantation-v2/commits{/sha}
+https://api.github.com/repos/Inza/agens/branches?page=1&per_page=10
+
+name
+
+
+https://api.github.com/repos/Inza/ror-plantation-v2/commits?page=1&per_page=10
+
+message
 
 
 
