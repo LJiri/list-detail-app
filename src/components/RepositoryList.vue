@@ -1,6 +1,10 @@
 <template>
-  <ul>
-    <RepositoryItem v-for="repository in repositories" v-bind:key="repository.id" v-bind="repository" />
+  <ul class="repository-list list-unstyled loading">
+    <RepositoryItem
+      v-for="repository in repositories"
+      v-bind:key="repository.id"
+      v-bind="repository"
+    />
   </ul>
 </template>
 
@@ -16,12 +20,6 @@ export default {
     repositories: Array
   },
   created() {
-    console.log('fuck',this.repositories)
   }
 };
-
 </script>
-
-<style scoped lang="scss">
-
-</style>

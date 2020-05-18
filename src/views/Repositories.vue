@@ -12,7 +12,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import RepositoryList from "@/components/RepositoryList.vue";
 import UserInfo from "@/components/UserInfo.vue";
 
@@ -24,24 +23,34 @@ export default {
   },
   data() {
     return {
-      userInfo: {
-        avatar_url: 'http://satyr.io/200-250x300'
-      },
+      userInfo: {},
       repositories: []
-    }
+    };
   },
   created() {
     (async () => {
-      let userResponse = await fetch("https://api.github.com/users/Inza");
-      let userData = await userResponse.json();
-      this.userInfo = userData;
+      try {
+        let userResponse = await fetch("https://api.github.com/users/Inza");
+        let userData = await userResponse.json();
+        this.userInfo = userData;
 
-      let repositoriesResponse = await fetch("https://api.github.com/users/Inza/repos");
-      let repositoriesData = await repositoriesResponse.json();
-      this.repositories = Array.from(repositoriesData);
+        document.querySelector(".user-info").classList.remove("loading");
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+
+    (async () => {
+      try {
+        let repositoriesResponse = await fetch("https://api.github.com/users/Inza/repos");
+        let repositoriesData = await repositoriesResponse.json();
+        this.repositories = Array.from(repositoriesData);
+
+        document.querySelector(".repository-list").classList.remove("loading");
+      } catch (err) {
+        console.log(err);
+      }
     })();
   }
 };
-
-
 </script>

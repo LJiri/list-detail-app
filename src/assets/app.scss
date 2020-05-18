@@ -1,0 +1,65 @@
+// custom breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 470px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// bootstrap files
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/spinners";
+
+// colors
+$primary-color: #007bff;
+$secondary-color: #fd7e14;
+$text-color: #000;
+$bg-color: #fff;
+$bg-hover-color: #eee;
+
+// borders
+$border-radius: 15px;
+
+// paddings and margins
+$margin: 20px;
+$padding: 20px;
+
+// global styles
+body {
+    background: $primary-color;
+}
+
+// loader
+@keyframes loader {
+  to { transform: rotate(360deg); }
+}
+
+.loading {
+  &:after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    width: 40px;
+    height: 40px;
+    border: $spinner-border-width solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: loader .75s linear infinite;
+    z-index: 50;
+  }
+
+  & > * {
+    visibility: hidden;
+  }
+
+}
