@@ -6,10 +6,10 @@
       </div>
     </div>
     <div class="col-12 col-sm-8 col-lg-12">
-      <div class="user-info-body text-center text-sm-left">
+      <div class="user-info-body text-center text-sm-left text-lg-center">
         <h2>
           <span>{{ name }}</span>
-          <span>{{ login }}</span>
+          <span class="user-info-login">({{ login }})</span>
         </h2>
         <p>{{ bio }}</p>
       </div>
@@ -72,6 +72,11 @@ export default {
 
   &-body {
     padding: $padding;
+  }
+
+  &-login {
+    display: block;
+    font-size: 22px;
   }
 }
 </style>
