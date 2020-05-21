@@ -12,6 +12,9 @@
 </template>
 
 <script>
+import fetchData from "@/utilities/fetchData.js";
+import removeLoader from "@/utilities/removeLoader.js";
+
 import RepositoryList from "@/components/RepositoryList.vue";
 import UserInfo from "@/components/UserInfo.vue";
 
@@ -28,29 +31,11 @@ export default {
     };
   },
   created() {
-    (async () => {
-      try {
-        let userResponse = await fetch("https://api.github.com/users/Inza");
-        let userData = await userResponse.json();
-        this.userInfo = userData;
+    fetchData("https://api.github.com/users/Inza", this, 'userInfo')
+      .then(() => removeLoader('.user-info'));
 
-        document.querySelector(".user-info").classList.remove("loading");
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-
-    (async () => {
-      try {
-        let repositoriesResponse = await fetch("https://api.github.com/users/Inza/repos");
-        let repositoriesData = await repositoriesResponse.json();
-        this.repositories = Array.from(repositoriesData);
-
-        document.querySelector(".repository-list").classList.remove("loading");
-      } catch (err) {
-        console.log(err);
-      }
-    })();
+    fetchData("https://api.github.com/users/Inza/repos", this, 'repositories', true)
+      .then(() => removeLoader('.repository-list'));  
   }
 };
 </script>

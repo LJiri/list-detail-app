@@ -37,6 +37,9 @@
 </template>
 
 <script>
+import fetchData from "@/utilities/fetchData.js";
+import removeLoader from "@/utilities/removeLoader.js"; 
+
 export default {
   name: "RepositoryDetail",
   data() {
@@ -54,24 +57,12 @@ export default {
     }
   },
   created() {
-
     (async () => {
-      try {
-        let branchesResponse = await fetch(`https://api.github.com/repos/Inza/${this.$route.params.name}/branches?page=1&per_page=10`);
-        let branchesData = await branchesResponse.json();
-        this.branches = Array.from(branchesData);
+      await fetchData(`https://api.github.com/repos/Inza/${this.$route.params.name}/branches?page=1&per_page=10`, this, 'branches', true);
+      await fetchData(`https://api.github.com/repos/Inza/${this.$route.params.name}/commits?page=1&per_page=10`, this, 'commits', true);
 
-        let commitsResponse = await fetch(`https://api.github.com/repos/Inza/${this.$route.params.name}/commits?page=1&per_page=10`);
-        let commitsData = await commitsResponse.json();
-        this.commits = Array.from(commitsData);
-
-        document.querySelector(".repository-detail .accordion").classList.remove("loading");
-      } catch (err) {
-        console.log(err);
-      }
+      removeLoader(".repository-detail .accordion");
     })();
-
-   
   }
 };
 </script>
